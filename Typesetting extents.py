@@ -1,27 +1,26 @@
-import math
-#Figure out unrounded signatures (/16)
-#If decimal is >0.3 then round down with no blanks
-#If decimal is <0.3 then round up with blanks
-#Calculate blanks
-#Give warning if more than 6 blank pages
+# Just a lil program to calculate page extents when typesetting
+# (Because total page length has to be a multiple of 16 for printing reasons)
 
-#Input from user on current page count
+import math
+
+# Input from user on current page count
 page_count = int (input("Current page count: "))
 signatures = 0
 
-#calculate extent
+# Calculate extent
 def extent (page_count):
     return signatures*16
 
-#calculate blanks
+# Calculate blanks
 def blanks (signatures, unroundedSig):
     remainder = signatures-unroundedSig
     return int(remainder*16)
 
-#If already a multiple of 16 then yay
+# If already a multiple of 16 then yay
 if page_count % 16 == 0:
         print (f"Yay, your extent is {page_count}pp exactly!")
-
+    
+# Otherwise round down if doable to track back or give extent plus blank pages
 else:
     unroundedSig = float (page_count/16)
     roundability = math.trunc(unroundedSig)
